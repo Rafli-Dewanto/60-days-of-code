@@ -1,0 +1,38 @@
+.flex-container{
+    width: 600px;
+    margin: 30px auto;
+    padding: 5px;
+    border: solid 1px black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-evenly; */
+    /* height: 400px; */
+    align-items: baseline;
+}
+
+.flex-container div{
+    background-color: aqua;
+    width: 120px;
+    height: 120px;
+    margin: 2px;
+    flex: 1;
+}
+
+.flex-container div.dua{
+    flex: 2;
+}
+
+/* .satu{
+    order: 3;
+}
+.dua{
+    order: 4;
+}
+.tiga{
+    order: 2;
+}
+.empat{
+    order: 1;
+} */
