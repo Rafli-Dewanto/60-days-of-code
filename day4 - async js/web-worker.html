@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX</title>
+    <script>
+      const worker = new Worker("webWorker.js");
+      worker.addEventListener("message", (eveent) =>{
+        console.log(`Receive message from web worker: ${event.data}`)
+      })
+
+      
+
+      function buttonClick() {
+        console.log("Start Log");
+        // showLog(20000);
+        worker.postMessage(20000);
+        console.log("Finish Log");
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="buttonClick()">Search Products</button>
+  </body>
+</html>
