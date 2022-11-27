@@ -1,11 +1,11 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const https = require('https');
-const bodyParser = require('body-parser');
+const app = express();
 const PORT = 3000;
 
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html")
@@ -23,7 +23,7 @@ app.post("/", (req, res) => {
             const deskripsi = weatherResult.weather[0].description;
             const iconPath = weatherResult.weather[0].icon;
             const iconURL = `http://openweathermap.org/img/wn/${iconPath}@2x.png`;
-            
+
             res.write(`<h1>Suhu di ${kotaQueryUser}: ${suhu.toFixed(1)} derajat celcius</h1>`);
             res.write(`<p>Deskripsi: ${deskripsi}</p>`)
             res.write(`<img src="${iconURL}" alt="icon-cuaca">`)
@@ -33,5 +33,5 @@ app.post("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`server running on port ${PORT}`)
+    console.log(`server running on http://localhost:${PORT}`);
 });
