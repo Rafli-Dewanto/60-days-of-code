@@ -67,4 +67,4 @@ app.post("/failure", (req, res) => {
     res.redirect("/signup");
 })
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
