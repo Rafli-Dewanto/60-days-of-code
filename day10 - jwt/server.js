@@ -29,10 +29,10 @@ app.post("/login", (req, res) => {
     res.json({ accessToken: accessToken });
 });
 
-function authenticate(req, res, nex) {
+function authenticate(req, res, next) {
 
 }
 
 app.listen(3000, () => {
-    console.log(`server ready`);
+    console.log(`server running on http://localhost:3000`);
 })
