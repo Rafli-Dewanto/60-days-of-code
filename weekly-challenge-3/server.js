@@ -12,24 +12,24 @@ app.get('/', (req, res) => {
 })
 
 app.get('/getPosts', (req, res) => {
-    const sql = `SELECT * FROM post`
-    connection.query(sql, (err, results, fields) => {
-        if (err) response(500, '', 'error', res);
-        response(200, results, 'get all posts', res);
-    })
-})
-
-app.get('/getPostById/:id', (req, res) => {
-    const id = req.params.id;
-    const sql = `SELECT * FROM post WHERE id = '${id}';`;
-    connection.query(sql, (err, results, fields) => {
-        if (err) response(500, '', 'error', res);
-        if (results.length === 0) {
-            response(404, '', 'data not found', res);
-        } else {
-            response(200, results, 'get post by id', res);
-        }
-    })
+    const id = req.query.id;
+    if (id) {
+        const sql = `SELECT * FROM post WHERE id = '${id}';`;
+        connection.query(sql, (err, results, fields) => {
+            if (err) response(500, '', 'error', res);
+            if (results.length === 0) {
+                response(404, undefined, 'data not found', res);
+            } else {
+                response(200, results, 'get post by id', res);
+            }
+        })
+    } else {
+        const sql = `SELECT * FROM post`
+        connection.query(sql, (err, results, fields) => {
+            if (err) response(500, '', 'error', res);
+            response(200, results, 'get all posts', res);
+        })
+    }
 })
 
 app.post('/createPost', (req, res) => {
