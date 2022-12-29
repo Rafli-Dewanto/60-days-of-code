@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>Hero List</title>
+  </head>
+  <body class="container is-fullhd">
+    <h1 class="has-text-weight-bold is-size-3 mb-5 mt-5">
+      <%= heroes.title %>
+    </h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < heroes.data.length; i++) {
+        %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= heroes.data[i].name %></td>
+          <td><%= heroes.data[i].role %></td>
+          <td><a href="/hero/<%= heroes.data[i].id %>">Edit</a></td>
+          <td>
+            <form action="/hero/remove" method="post">
+              <input type="text" hidden name="id" value="<%= heroes.data[i].id %>" />
+              <button class="delete" type="submit"></button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <h2 class="has-text-weight-bold is-size-3 mb-5">Add Hero</h2>
+    <form action="/hero/add" method="post">
+      <div class="field">
+        <label class="label">Name</label>
+        <div class="control">
+          <input
+            class="input is-normal is-hoverable"
+            type="text"
+            name="name"
+            placeholder="add hero name"
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Role</label>
+        <div class="control">
+          <input
+            class="input is-normal is-hoverable"
+            type="text"
+            name="role"
+            placeholder="add hero role"
+          />
+        </div>
+      </div>
+      <input class="button is-primary" type="submit" value="Add" />
+    </form>
+  </body>
+</html>
